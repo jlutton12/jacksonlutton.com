@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jackson Lutton</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest: #1a2e1a;
+      --moss: #2d4a2d;
+      --sage: #5a7a4a;
+      --tan: #c8a96e;
+      --cream: #f5f0e8;
+      --white: #fdfcfa;
+      --dark: #0f1a0f;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--forest);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(90,122,74,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--forest);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--moss);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--tan); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: var(--forest);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 4rem 4rem 5rem;
+      position: relative;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: 0; right: -40px;
+      width: 80px; height: 100%;
+      background: var(--forest);
+      clip-path: polygon(0 0, 0% 100%, 100% 100%);
+      z-index: 2;
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    .hero-name span { color: var(--tan); display: block; }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(253,252,250,0.7);
+      line-height: 1.7;
+      max-width: 380px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 2px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--tan);
+      color: var(--dark);
+    }
+    .btn-primary:hover { background: #d4b87a; transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(253,252,250,0.4);
+    }
+    .btn-outline:hover { border-color: var(--tan); color: var(--tan); transform: translateY(-2px); }
+
+    .hero-right {
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 4rem 4rem 5rem;
+      position: relative;
+    }
+
+    .hero-visual {
+      position: relative;
+      width: 320px;
+      height: 420px;
+    }
+
+    .hero-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: 4px;
+      padding: 2rem;
+      box-shadow: 0 20px 60px rgba(26,46,26,0.12);
+    }
+
+    .hero-card-main {
+      top: 0; left: 0;
+      width: 280px;
+      opacity: 0;
+      animation: slideIn 0.9s 1s forwards;
+    }
+
+    .hero-card-accent {
+      bottom: 0; right: 0;
+      width: 200px;
+      background: var(--forest);
+      color: var(--white);
+      opacity: 0;
+      animation: slideIn 0.9s 1.2s forwards;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1.3;
+    }
+
+    .hero-card-accent .card-label { color: var(--tan); }
+    .hero-card-accent .card-value { color: var(--white); font-size: 0.95rem; }
+
+    .hero-line {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--tan), transparent);
+    }
+
+    /* SECTION BASE */
+    section { padding: 6rem 5rem; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    /* SKILLS */
+    .skills-section {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--cream);
+      border-radius: 4px;
+      padding: 1.5rem;
+      border-left: 3px solid var(--sage);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(26,46,26,0.1); }
+
+    .skill-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+    .skill-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: 0.4rem;
+    }
+
+    .skill-desc {
+      font-size: 0.82rem;
+      color: var(--sage);
+      line-height: 1.5;
+    }
+
+    /* ABOUT */
+    .about-section {
+      background: var(--forest);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-section .section-title { color: var(--white); }
+
+    .about-text {
+      font-size: 1rem;
+      color: rgba(253,252,250,0.75);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .hobbies {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .hobby {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem 1.5rem;
+      background: rgba(253,252,250,0.05);
+      border-radius: 4px;
+      border: 1px solid rgba(253,252,250,0.08);
+      transition: background 0.2s;
+    }
+
+    .hobby:hover { background: rgba(253,252,250,0.09); }
+
+    .hobby-icon { font-size: 1.8rem; }
+
+    .hobby-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .hobby-sub {
+      font-size: 0.8rem;
+      color: var(--tan);
+      margin-top: 0.2rem;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .contact-section .section-label,
+    .contact-section .section-title { text-align: center; }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.1rem 2rem;
+      background: var(--white);
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--forest);
+      font-weight: 500;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 20px rgba(26,46,26,0.08);
+      transition: all 0.25s;
+      border: 1px solid transparent;
+    }
+
+    .contact-card:hover {
+      border-color: var(--tan);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(26,46,26,0.12);
+    }
+
+    .contact-card-icon { font-size: 1.3rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: rgba(253,252,250,0.4);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    footer span { color: var(--tan); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 8rem 2rem 4rem; }
+      .hero-left::after { display: none; }
+      .hero-right { display: none; }
+      .skills-section { grid-template-columns: 1fr; padding: 4rem 2rem; }
+      .about-section { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2.5rem; }
+      section { padding: 4rem 2rem; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">JL</div>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-tag">IT Support Specialist</p>
+      <h1 class="hero-name">Jackson<span>Lutton.</span></h1>
+      <p class="hero-desc">Helping people and teams work better through technology. Experienced in Google Workspace and Microsoft environments — keeping systems running smoothly so others can focus on what matters.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+        <a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" class="btn btn-outline">LinkedIn</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="hero-card hero-card-main">
+          <div class="card-label">Current Focus</div>
+          <div class="card-value">Help Desk & IT Support</div>
+          <div style="margin-top:1rem; font-size:0.8rem; color:var(--sage); line-height:1.6;">Google Workspace · Microsoft 365<br>User Support · Systems Administration</div>
+        </div>
+        <div class="hero-line"></div>
+        <div class="hero-card hero-card-accent">
+          <div class="card-label">Based In</div>
+          <div class="card-value">Dallas, TX</div>
+          <div style="margin-top:0.5rem; font-size:0.75rem; color:rgba(253,252,250,0.5);">Open to opportunities</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="skills-section">
+    <div>
+      <p class="section-label">What I Do</p>
+      <h2 class="section-title">Technical Skills & Expertise</h2>
+      <p style="font-size:0.95rem; color:var(--sage); line-height:1.7;">Providing reliable, people-first IT support across modern cloud environments. Comfortable diagnosing issues and communicating solutions clearly — whether remote or in person.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🔵</div>
+        <div class="skill-name">Microsoft 365</div>
+        <div class="skill-desc">Outlook, Teams, SharePoint, OneDrive, Azure AD, and Intune device management.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🟢</div>
+        <div class="skill-name">Google Workspace</div>
+        <div class="skill-desc">Gmail, Drive, Meet, Admin Console, Chromebook management and provisioning.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🖥️</div>
+        <div class="skill-name">Help Desk Support</div>
+        <div class="skill-desc">Ticket management, user onboarding, troubleshooting hardware and software issues.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔒</div>
+        <div class="skill-name">IT Security</div>
+        <div class="skill-desc">Password policies, MFA setup, phishing awareness and access management.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about-section">
+    <div>
+      <p class="section-label" style="color:var(--tan);">Beyond the Desk</p>
+      <h2 class="section-title">A Little About Me</h2>
+      <p class="about-text">I'm a tech professional with a passion for solving problems and helping people — whether that's getting someone's email working again or setting up a whole new office environment. When I'm not at a keyboard, you'll find me outdoors, on the water, or on the course.</p>
+      <br/>
+      <p class="about-text">I believe good IT support is as much about communication as it is about technical knowledge. My goal is always to leave people feeling confident and taken care of.</p>
+    </div>
+    <div class="hobbies">
+      <div class="hobby">
+        <div class="hobby-icon">🎣</div>
+        <div>
+          <div class="hobby-name">Fishing</div>
+          <div class="hobby-sub">Any chance I get — lakes, rivers, wherever the fish are biting</div>
+        </div>
+      </div>
+      <div class="hobby">
+        <div class="hobby-icon">⛳</div>
+        <div>
+          <div class="hobby-name">Golf</div>
+          <div class="hobby-sub">Always working on the short game</div>
+        </div>
+      </div>
+      <div class="hobby">
+        <div class="hobby-icon">🌲</div>
+        <div>
+          <div class="hobby-name">The Outdoors</div>
+          <div class="hobby-sub">Hiking, camping, and time in nature — a hard reset from screen life</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <p class="section-label">Let's Connect</p>
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-links">
+      <a class="contact-card" href="mailto:luttonjackson@gmail.com">
+        <span class="contact-card-icon">✉️</span>
+        luttonjackson@gmail.com
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/jackson-lutton" target="_blank">
+        <span class="contact-card-icon">💼</span>
+        LinkedIn
+      </a>
+      <a class="contact-card" href="https://github.com/jlutton12" target="_blank">
+        <span class="contact-card-icon">🐙</span>
+        GitHub — jlutton12
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 <span>Jackson Lutton</span> · jacksonlutton.com</p>
+  </footer>
+
+</body>
+</html>
