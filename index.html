@@ -146,10 +146,7 @@
       display: inline-block;
     }
 
-    .btn-primary {
-      background: var(--blue);
-      color: var(--white);
-    }
+    .btn-primary { background: var(--blue); color: var(--white); }
     .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); }
 
     .btn-outline {
@@ -176,7 +173,6 @@
       gap: 2rem;
     }
 
-    /* PROFILE PHOTO */
     .photo-ring {
       width: 270px;
       height: 270px;
@@ -296,7 +292,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
-      align-items: center;
+      align-items: start;
     }
 
     .about-section .section-title { color: var(--white); }
@@ -309,26 +305,40 @@
       font-weight: 300;
     }
 
+    /* HOBBY ACCORDION */
     .hobbies {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 0.75rem;
     }
 
     .hobby {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .hobby.open {
+      border-color: rgba(59,130,246,0.4);
+    }
+
+    .hobby-header {
       display: flex;
       align-items: center;
       gap: 1.2rem;
       padding: 1.2rem 1.5rem;
-      background: rgba(255,255,255,0.05);
-      border-radius: 4px;
-      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      user-select: none;
       transition: background 0.2s;
     }
 
-    .hobby:hover { background: rgba(255,255,255,0.09); }
+    .hobby-header:hover { background: rgba(255,255,255,0.06); }
 
     .hobby-icon { color: var(--blue-light); flex-shrink: 0; }
+
+    .hobby-text { flex: 1; }
 
     .hobby-name {
       font-family: 'Playfair Display', serif;
@@ -342,6 +352,115 @@
       color: rgba(147,197,253,0.85);
       margin-top: 0.2rem;
     }
+
+    .hobby-chevron {
+      color: rgba(255,255,255,0.4);
+      flex-shrink: 0;
+      transition: transform 0.3s, color 0.2s;
+    }
+
+    .hobby.open .hobby-chevron {
+      transform: rotate(180deg);
+      color: var(--blue-light);
+    }
+
+    /* PHOTO STRIP (accordion body) */
+    .hobby-photos {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .hobby.open .hobby-photos {
+      max-height: 220px;
+    }
+
+    .photo-strip {
+      display: flex;
+      gap: 0.6rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 0 1.5rem 1.2rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.15) transparent;
+    }
+
+    .photo-strip::-webkit-scrollbar { height: 3px; }
+    .photo-strip::-webkit-scrollbar-track { background: transparent; }
+    .photo-strip::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+    .photo-strip img {
+      width: 160px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 3px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+
+    .photo-strip img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,15,30,0.93);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      backdrop-filter: blur(4px);
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      cursor: default;
+      animation: fadeUp 0.2s ease forwards;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+    }
+    .lightbox-close:hover { color: var(--white); }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: var(--white);
+      font-size: 1.8rem;
+      padding: 0.8rem 1rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.2s;
+      line-height: 1;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.2); }
+    .lightbox-prev { left: 1.5rem; }
+    .lightbox-next { right: 1.5rem; }
 
     /* CONTACT */
     .contact-section {
@@ -399,7 +518,7 @@
     /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* RESPONSIVE */
@@ -442,7 +561,7 @@
     <div class="hero-right">
       <div class="hero-visual">
         <div class="photo-ring">
-          <img src="IMG_8489.JPG" alt="Jackson Lutton" class="hero-photo">
+          <img src="pfp.JPG" alt="Jackson Lutton" class="hero-photo">
         </div>
         <div class="hero-info-cards">
           <div class="hero-card">
@@ -510,36 +629,96 @@
       <br/>
       <p class="about-text">I believe good IT support is as much about communication as it is about technical knowledge. My goal is always to leave people feeling confident and taken care of.</p>
     </div>
+
     <div class="hobbies">
-      <div class="hobby">
-        <div class="hobby-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2l4 4-9.5 9.5"/><path d="M14.5 5.5l4 4"/><path d="M3 22c3-3 4.5-6.5 4-10"/><path d="M7 12c-1 2.5-1 5.5 0 8"/></svg>
+
+      <!-- FISHING -->
+      <div class="hobby" id="hobby-fishing">
+        <div class="hobby-header" onclick="toggleHobby('hobby-fishing')">
+          <div class="hobby-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2l4 4-9.5 9.5"/><path d="M14.5 5.5l4 4"/><path d="M3 22c3-3 4.5-6.5 4-10"/><path d="M7 12c-1 2.5-1 5.5 0 8"/></svg>
+          </div>
+          <div class="hobby-text">
+            <div class="hobby-name">Fishing</div>
+            <div class="hobby-sub">Any chance I get — lakes, rivers, wherever the fish are biting</div>
+          </div>
+          <div class="hobby-chevron">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
         </div>
-        <div>
-          <div class="hobby-name">Fishing</div>
-          <div class="hobby-sub">Any chance I get — lakes, rivers, wherever the fish are biting</div>
+        <div class="hobby-photos">
+          <div class="photo-strip" data-category="fishing">
+            <img src="fishing1.jpeg" alt="Fishing" loading="lazy">
+            <img src="fishing2.jpg"  alt="Fishing" loading="lazy">
+            <img src="fishing3.jpeg" alt="Fishing" loading="lazy">
+            <img src="fishing4.jpeg" alt="Fishing" loading="lazy">
+            <img src="fishing5.JPG"  alt="Fishing" loading="lazy">
+            <img src="fishing6.jpeg" alt="Fishing" loading="lazy">
+          </div>
         </div>
       </div>
-      <div class="hobby">
-        <div class="hobby-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><path d="M18 20h4"/><path d="M20 18v4"/></svg>
+
+      <!-- GOLF -->
+      <div class="hobby" id="hobby-golf">
+        <div class="hobby-header" onclick="toggleHobby('hobby-golf')">
+          <div class="hobby-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><path d="M18 20h4"/><path d="M20 18v4"/></svg>
+          </div>
+          <div class="hobby-text">
+            <div class="hobby-name">Golf</div>
+            <div class="hobby-sub">Always working on the short game</div>
+          </div>
+          <div class="hobby-chevron">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
         </div>
-        <div>
-          <div class="hobby-name">Golf</div>
-          <div class="hobby-sub">Always working on the short game</div>
+        <div class="hobby-photos">
+          <div class="photo-strip" data-category="golf">
+            <img src="golf1.jpeg" alt="Golf" loading="lazy">
+            <img src="golf2.jpeg" alt="Golf" loading="lazy">
+            <img src="golf3.JPG"  alt="Golf" loading="lazy">
+            <img src="golf4.jpeg" alt="Golf" loading="lazy">
+            <img src="golf5.jpeg" alt="Golf" loading="lazy">
+            <img src="golf6.JPG"  alt="Golf" loading="lazy">
+          </div>
         </div>
       </div>
-      <div class="hobby">
-        <div class="hobby-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-8 4 5 3-3 4 6"/><path d="M3 21h18"/></svg>
+
+      <!-- OUTDOORS -->
+      <div class="hobby" id="hobby-outdoors">
+        <div class="hobby-header" onclick="toggleHobby('hobby-outdoors')">
+          <div class="hobby-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-8 4 5 3-3 4 6"/><path d="M3 21h18"/></svg>
+          </div>
+          <div class="hobby-text">
+            <div class="hobby-name">The Outdoors</div>
+            <div class="hobby-sub">Hiking, camping, and time in nature — a hard reset from screen life</div>
+          </div>
+          <div class="hobby-chevron">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
         </div>
-        <div>
-          <div class="hobby-name">The Outdoors</div>
-          <div class="hobby-sub">Hiking, camping, and time in nature — a hard reset from screen life</div>
+        <div class="hobby-photos">
+          <div class="photo-strip" data-category="outdoors">
+            <img src="outdoor1.jpeg" alt="Outdoors" loading="lazy">
+            <img src="outdoor2.jpeg" alt="Outdoors" loading="lazy">
+            <img src="outdoor3.jpeg" alt="Outdoors" loading="lazy">
+            <img src="outdoor4.jpeg" alt="Outdoors" loading="lazy">
+            <img src="outdoor5.jpeg" alt="Outdoors" loading="lazy">
+          </div>
         </div>
       </div>
+
     </div>
   </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lb-close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lb-prev">&#8249;</button>
+    <img id="lb-img" src="" alt="Photo">
+    <button class="lightbox-nav lightbox-next" id="lb-next">&#8250;</button>
+  </div>
 
   <!-- CONTACT -->
   <section id="contact" class="contact-section">
@@ -564,6 +743,69 @@
   <footer>
     <p>© 2026 <span>Jackson Lutton</span> · jacksonlutton.com</p>
   </footer>
+
+  <script>
+    // Accordion toggle
+    function toggleHobby(id) {
+      const el = document.getElementById(id);
+      const isOpen = el.classList.contains('open');
+      // Close all first
+      document.querySelectorAll('.hobby').forEach(h => h.classList.remove('open'));
+      // Open clicked one if it wasn't already open
+      if (!isOpen) el.classList.add('open');
+    }
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lb-img');
+    const lbClose  = document.getElementById('lb-close');
+    const lbPrev   = document.getElementById('lb-prev');
+    const lbNext   = document.getElementById('lb-next');
+
+    let currentImages = [];
+    let currentIndex  = 0;
+
+    function openLightbox(imgs, index) {
+      currentImages = imgs;
+      currentIndex  = index;
+      lbImg.src = currentImages[currentIndex].src;
+      lightbox.classList.add('open');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lbImg.src = '';
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      lbImg.src = currentImages[currentIndex].src;
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      lbImg.src = currentImages[currentIndex].src;
+    }
+
+    document.querySelectorAll('.photo-strip').forEach(strip => {
+      const imgs = Array.from(strip.querySelectorAll('img'));
+      imgs.forEach((img, i) => {
+        img.addEventListener('click', () => openLightbox(imgs, i));
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', e => { e.stopPropagation(); showPrev(); });
+    lbNext.addEventListener('click', e => { e.stopPropagation(); showNext(); });
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'ArrowLeft')  showPrev();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'Escape')     closeLightbox();
+    });
+  </script>
 
 </body>
 </html>
