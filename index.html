@@ -225,7 +225,7 @@
     }
 
     /* SECTION BASE */
-    section { padding: 6rem 5rem; }
+    section { padding: 6rem max(5rem, calc((100% - 1100px) / 2)); }
 
     .section-label {
       font-size: 0.7rem;
@@ -290,8 +290,8 @@
       background: var(--navy);
       color: var(--white);
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
       align-items: start;
     }
 
