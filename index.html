@@ -528,9 +528,18 @@
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 8rem 2rem 4rem; }
+      .hero-left { padding: 8rem 2rem 3rem; }
       .hero-left::after { display: none; }
-      .hero-right { display: none; }
+      .hero-right {
+        display: flex;
+        padding: 2rem 2rem 4rem;
+        background: var(--navy);
+        justify-content: center;
+      }
+      .hero-visual { align-items: center; }
+      .photo-ring { width: 180px; height: 180px; }
+      .hero-info-cards { justify-content: center; }
+      .hero-card { min-width: 90px; }
       .skills-section { grid-template-columns: 1fr; padding: 4rem 2rem; }
       .about-section { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2.5rem; }
       section { padding: 4rem 2rem; }
