@@ -618,16 +618,12 @@
       margin-right: auto;
     }
     .contact-info {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
-      justify-content: center;
       width: 100%;
     }
     .contact-info .contact-card {
-      flex: 1;
-      min-width: 160px;
       justify-content: center;
     }
     .contact-form {
