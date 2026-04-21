@@ -943,18 +943,18 @@
         </a>
       </div>
       <div class="reveal reveal-delay-3">
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/mbdqzdbb" method="POST">
           <div class="form-group">
             <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" placeholder="Your name" required>
+            <input type="text" id="cf-name" name="name" placeholder="Your name" required>
           </div>
           <div class="form-group">
             <label for="cf-email">Email</label>
-            <input type="email" id="cf-email" placeholder="your@email.com" required>
+            <input type="email" id="cf-email" name="email" placeholder="your@email.com" required>
           </div>
           <div class="form-group">
             <label for="cf-message">Message</label>
-            <textarea id="cf-message" rows="5" placeholder="What's on your mind?" required></textarea>
+            <textarea id="cf-message" name="message" rows="5" placeholder="What's on your mind?" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary form-submit">Send Message</button>
           <div class="form-success" id="form-success">✓ Message sent — I'll get back to you soon!</div>
@@ -1043,19 +1043,34 @@
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 
-  // Contact form
+  // Contact form — Formspree
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = contactForm.querySelector('button[type="submit"]');
       btn.textContent = 'Sending...';
       btn.disabled = true;
-      setTimeout(() => {
-        contactForm.reset();
-        btn.style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      }, 800);
+      try {
+        const response = await fetch('https://formspree.io/f/mbdqzdbb', {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          contactForm.reset();
+          btn.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        } else {
+          btn.textContent = 'Send Message';
+          btn.disabled = false;
+          alert('Something went wrong. Please email me directly at luttonjackson@gmail.com');
+        }
+      } catch {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        alert('Something went wrong. Please email me directly at luttonjackson@gmail.com');
+      }
     });
   }
 </script>
