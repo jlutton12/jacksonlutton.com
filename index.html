@@ -679,6 +679,28 @@
       .contact-info .contact-card { min-width: unset; }
     }
 
+    @media (max-width: 700px) {
+      .nav-hamburger { display: flex; }
+      nav { position: relative; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--white);
+        padding: 1.25rem 1.5rem;
+        border-top: 1px solid #e5e7eb;
+        gap: 1rem;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+      }
+      .nav-links.open { display: flex; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-info-cards { flex-direction: column; align-items: stretch; }
+      .hero-card { min-width: 0; width: 100%; }
+    }
+
     /* HAMBURGER MENU */
     .nav-hamburger {
       display: none;
@@ -728,6 +750,9 @@
 
   <nav>
     <div class="nav-logo">JL</div>
+    <button id="nav-hamburger" class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
       <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
