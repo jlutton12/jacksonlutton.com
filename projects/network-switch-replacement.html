@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Network Switch Replacement — Jackson Lutton</title>
+  <meta name="description" content="Replacing a production network switch by documenting the existing configuration, mirroring it on new hardware, and cutting over with no service disruption."/>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <meta property="og:title" content="Network Switch Replacement — Jackson Lutton"/>
+  <meta property="og:description" content="Documenting, mirroring, and cutting over a production network switch with zero disruption."/>
+  <meta property="og:type" content="article"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/index.html" class="nav-logo">JL</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/projects/index.html">Projects</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/assets/resume/Lutton-Resume.pdf" download>Resume</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="case-hero">
+      <p class="case-hero-eyebrow">Case Study — MSP Client Work</p>
+      <h1>Network Switch Replacement</h1>
+      <p class="case-hero-summary">Swapped out a production network switch by documenting every detail of the old configuration first, then mirroring it on new hardware for a cutover nobody noticed.</p>
+      <div class="project-tags">
+        <span class="project-tag">Networking</span>
+        <span class="project-tag">Infrastructure</span>
+        <span class="project-tag">Documentation</span>
+      </div>
+    </header>
+
+    <div class="case-body">
+      <section class="case-section">
+        <h2>Problem</h2>
+        <p>A client's core network switch needed replacing. The existing configuration — VLANs, port assignments, uplinks — had accumulated over time and wasn't fully documented anywhere. Getting it wrong meant knocking devices offline during business hours.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>What I built</h2>
+        <p>Before touching any hardware, I thoroughly documented the existing switch: every port, its VLAN membership, what was plugged into it, and the uplink topology. I then configured the replacement switch to mirror that setup exactly, verified the config offline, and performed the physical cutover in a maintenance window. The result was a seamless swap with no disruption to network services.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Architecture</h2>
+        <div class="case-diagram">
+          <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: the old switch's configuration is documented, mirrored onto a new switch, and then cut over.">
+            <defs>
+              <marker id="arrow-nsr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#64748b"/>
+              </marker>
+            </defs>
+            <rect x="20" y="70" width="170" height="60" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
+            <text x="105" y="95" font-family="DM Sans, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Old switch</text>
+            <text x="105" y="113" font-family="DM Sans, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">VLANs · ports · uplinks</text>
+
+            <line x1="190" y1="100" x2="260" y2="100" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-nsr)"/>
+            <text x="225" y="88" font-family="DM Sans, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">document</text>
+
+            <rect x="270" y="70" width="180" height="60" rx="6" fill="#1e3a5f"/>
+            <text x="360" y="95" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">Config record</text>
+            <text x="360" y="113" font-family="DM Sans, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">port map + VLAN table</text>
+
+            <line x1="450" y1="100" x2="530" y2="100" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-nsr)"/>
+            <text x="490" y="88" font-family="DM Sans, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">mirror</text>
+
+            <rect x="540" y="70" width="160" height="60" rx="6" fill="#2563eb"/>
+            <text x="620" y="95" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">New switch</text>
+            <text x="620" y="113" font-family="DM Sans, sans-serif" font-size="12" fill="#bfdbfe" text-anchor="middle">verified, then cut over</text>
+          </svg>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Stack &amp; tools</h2>
+        <ul>
+          <li>Managed network switch (existing and replacement) — <span class="todo">[TODO — vendor/model]</span></li>
+          <li>Switch CLI / web management — config export, VLAN and port setup</li>
+          <li>Port-map spreadsheet and cable labeling — the documentation that made the cutover predictable</li>
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>What I learned</h2>
+        <p>The documentation step was the whole project. Once the port map and VLAN table existed, configuring the new switch was straightforward and the cutover was low-stress because there was nothing left to guess. It also left the client with documentation they didn't have before, which made every future change easier.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>What's next</h2>
+        <p><span class="todo">[TODO — e.g. config backups on a schedule, or standardizing the port-map template across other client sites]</span></p>
+      </section>
+
+      <section class="case-section">
+        <h2>Gallery</h2>
+        <div class="case-gallery">
+          <div class="case-gallery-item">network-switch-01.png — Port map / VLAN documentation</div>
+          <div class="case-gallery-item">network-switch-02.png — Rack photo after cutover</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="case-nav">
+    <a href="/projects/azure-intune-migration.html" class="btn btn-outline-dark">&larr; Azure AD & Intune Migration</a>
+    <a href="/projects/uniflow-print-migration.html" class="btn btn-outline-dark">Uniflow Cloud Print &rarr;</a>
+  </nav>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">Jackson Lutton</div>
+      <ul class="footer-links">
+        <li><a href="mailto:luttonjackson@gmail.com">Email</a></li>
+        <li><a href="https://github.com/jlutton12" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 <span>Jackson Lutton</span> &middot; jacksonlutton.com &middot; Built with plain HTML/CSS/JS, hosted on <span>Netlify</span>.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

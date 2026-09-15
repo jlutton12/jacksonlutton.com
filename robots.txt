@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /projects/_template.html
+
+Sitemap: https://jacksonlutton.com/sitemap.xml

@@ -8,7 +8,7 @@ Audience: hiring managers and IT leads. Tone: clear, practical, confident — no
 - Vanilla HTML/CSS/JS only. No frameworks, no build step, no npm.
 - Hosted on Netlify from the `main` branch of this repo. Deploy previews on every branch push.
 - Keep the existing palette and fonts. Extract them into CSS variables in `css/styles.css`.
-  - Palette: `--navy #1e3a5f`, `--blue #2563eb`, `--blue-light #3b82f6`, `--slate #64748b`, `--gray #f1f5f9`, `--white #ffffff`, `--dark #0f172a`, `--border #e2e8f0`.
+  - Palette: `--navy #1e3a5f`, `--blue #2563eb`, `--blue-light #3b82f6`, `--blue-pale #93c5fd` (small text on navy), `--slate #5a6b82` (body text; darkened from #64748b to pass 4.5:1 on gray), `--gray #f1f5f9`, `--white #ffffff`, `--dark #0f172a`, `--border #e2e8f0`.
   - Fonts: Playfair Display (headings/serif accents) + DM Sans (body), loaded from Google Fonts.
 
 ## Structure

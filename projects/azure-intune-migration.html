@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Azure AD & Intune Migration — Jackson Lutton</title>
+  <meta name="description" content="Migrating company devices off an on-premises Active Directory server into Azure AD via an Intune enrollment and reset workflow."/>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <meta property="og:title" content="Azure AD & Intune Migration — Jackson Lutton"/>
+  <meta property="og:description" content="Migrating company devices off an on-premises Active Directory server into Azure AD via Intune."/>
+  <meta property="og:type" content="article"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/index.html" class="nav-logo">JL</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/projects/index.html">Projects</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/assets/resume/Lutton-Resume.pdf" download>Resume</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="case-hero">
+      <p class="case-hero-eyebrow">Case Study — MSP Client Work</p>
+      <h1>Azure AD & Intune Migration</h1>
+      <p class="case-hero-summary">Moved a client's fleet off an aging on-premises Active Directory server and onto Azure AD, enrolling every device into Intune along the way.</p>
+      <div class="project-tags">
+        <span class="project-tag">Azure AD (Entra ID)</span>
+        <span class="project-tag">Intune</span>
+        <span class="project-tag">Microsoft 365</span>
+        <span class="project-tag">Device Management</span>
+      </div>
+    </header>
+
+    <div class="case-body">
+      <section class="case-section">
+        <h2>Problem</h2>
+        <p>A client was running an on-premises Active Directory server that was aging, costly to maintain, and tied every device to a single point of failure. Devices needed to move to a cloud identity model without disrupting the people using them day to day.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>What I built</h2>
+        <p>I led the transition of company devices off the on-premises AD server into Azure AD, using an Intune enrollment and reset workflow so each machine came back online already joined, policy-compliant, and provisioned with the software the user needed. I coordinated the rollout in batches to minimize downtime and confirmed every device was properly enrolled before moving to the next group.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Architecture</h2>
+        <div class="case-diagram">
+          <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: on-premises Active Directory server replaced by Azure AD and Intune managing client devices in the cloud.">
+            <defs>
+              <marker id="arrow-aim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#64748b"/>
+              </marker>
+            </defs>
+            <rect x="20" y="80" width="170" height="60" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
+            <text x="105" y="105" font-family="DM Sans, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">On-prem</text>
+            <text x="105" y="123" font-family="DM Sans, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">AD Server (retired)</text>
+
+            <line x1="190" y1="110" x2="260" y2="110" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow-aim)"/>
+
+            <rect x="270" y="30" width="180" height="60" rx="6" fill="#1e3a5f"/>
+            <text x="360" y="55" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">Azure AD</text>
+            <text x="360" y="73" font-family="DM Sans, sans-serif" font-size="13" fill="#93c5fd" text-anchor="middle">(Entra ID)</text>
+
+            <rect x="270" y="130" width="180" height="60" rx="6" fill="#2563eb"/>
+            <text x="360" y="155" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">Intune</text>
+            <text x="360" y="173" font-family="DM Sans, sans-serif" font-size="13" fill="#bfdbfe" text-anchor="middle">enrollment &amp; policy</text>
+
+            <line x1="360" y1="90" x2="360" y2="130" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-aim)"/>
+
+            <line x1="450" y1="60" x2="530" y2="60" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-aim)"/>
+            <line x1="450" y1="160" x2="530" y2="160" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-aim)"/>
+
+            <rect x="540" y="30" width="160" height="60" rx="6" fill="#f1f5f9" stroke="#2563eb"/>
+            <text x="620" y="55" font-family="DM Sans, sans-serif" font-size="13" fill="#1e3a5f" text-anchor="middle">Client devices</text>
+            <text x="620" y="73" font-family="DM Sans, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">(batch 1)</text>
+
+            <rect x="540" y="130" width="160" height="60" rx="6" fill="#f1f5f9" stroke="#2563eb"/>
+            <text x="620" y="155" font-family="DM Sans, sans-serif" font-size="13" fill="#1e3a5f" text-anchor="middle">Client devices</text>
+            <text x="620" y="173" font-family="DM Sans, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">(batch 2)</text>
+          </svg>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Stack &amp; tools</h2>
+        <ul>
+          <li>Azure AD (Entra ID) — cloud identity, replacing the on-prem directory</li>
+          <li>Microsoft Intune — device enrollment, compliance policy, and app deployment</li>
+          <li>Microsoft 365 admin center — license and account provisioning</li>
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>What I learned</h2>
+        <p>Batching the rollout mattered more than I expected — enrolling devices in small groups made it easy to catch policy misconfigurations before they affected everyone, instead of discovering a problem after the whole fleet had already moved. I also learned how much smoother the experience is for end users when the reset-and-enroll workflow is scripted consistently, rather than configured by hand on each machine.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>What's next</h2>
+        <p><span class="todo">[TODO — add if there are follow-up improvements, e.g. Autopilot for zero-touch provisioning on future hardware]</span></p>
+      </section>
+
+      <section class="case-section">
+        <h2>Gallery</h2>
+        <div class="case-gallery">
+          <div class="case-gallery-item">azure-intune-01.png — Intune device compliance dashboard</div>
+          <div class="case-gallery-item">azure-intune-02.png — Enrollment status for a device batch</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="case-nav">
+    <a href="/projects/index.html" class="btn btn-outline-dark">&larr; All projects</a>
+    <a href="/projects/network-switch-replacement.html" class="btn btn-outline-dark">Network Switch Replacement &rarr;</a>
+  </nav>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">Jackson Lutton</div>
+      <ul class="footer-links">
+        <li><a href="mailto:luttonjackson@gmail.com">Email</a></li>
+        <li><a href="https://github.com/jlutton12" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 <span>Jackson Lutton</span> &middot; jacksonlutton.com &middot; Built with plain HTML/CSS/JS, hosted on <span>Netlify</span>.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

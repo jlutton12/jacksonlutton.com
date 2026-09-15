@@ -3,941 +3,204 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jackson Lutton</title>
+  <title>Jackson Lutton — IT Support & Systems Technician</title>
+  <meta name="description" content="Jackson Lutton is an IT support technician in the Dallas–Fort Worth area, working across Microsoft 365, Google Workspace, device management, and networking."/>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <meta property="og:title" content="Jackson Lutton — IT Support & Systems Technician"/>
+  <meta property="og:description" content="IT support technician in the Dallas–Fort Worth area. Microsoft 365, Google Workspace, device management, networking, and a hands-on homelab."/>
+  <meta property="og:type" content="website"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --navy: #1e3a5f;
-      --blue: #2563eb;
-      --blue-light: #3b82f6;
-      --slate: #64748b;
-      --gray: #f1f5f9;
-      --white: #ffffff;
-      --dark: #0f172a;
-      --border: #e2e8f0;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--gray);
-      color: var(--navy);
-      overflow-x: hidden;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.2rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: 0.02em;
-    }
-
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--slate);
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--blue); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-left {
-      background: var(--navy);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8rem 4rem 4rem 5rem;
-      position: relative;
-    }
-
-    .hero-left::after {
-      content: '';
-      position: absolute;
-      top: 0; right: -40px;
-      width: 80px; height: 100%;
-      background: var(--navy);
-      clip-path: polygon(0 0, 0% 100%, 100% 100%);
-      z-index: 2;
-    }
-
-    .hero-tag {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--blue-light);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s forwards;
-    }
-
-    .hero-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.4s forwards;
-    }
-
-    .hero-name span { color: var(--blue-light); display: block; }
-
-    .hero-desc {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.7;
-      max-width: 380px;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.6s forwards;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.8s forwards;
-    }
-
-    .btn {
-      padding: 0.8rem 1.8rem;
-      border-radius: 2px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.25s;
-      cursor: pointer;
-      border: none;
-      display: inline-block;
-    }
-
-    .btn-primary { background: var(--blue); color: var(--white); }
-    .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.35);
-    }
-    .btn-outline:hover { border-color: var(--blue-light); color: var(--blue-light); transform: translateY(-2px); }
-
-    /* HERO RIGHT */
-    .hero-right {
-      background: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8rem 4rem 4rem 6rem;
-      position: relative;
-    }
-
-    .hero-visual {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .photo-ring {
-      width: 270px;
-      height: 270px;
-      border-radius: 50%;
-      padding: 4px;
-      background: linear-gradient(135deg, var(--blue), #93c5fd);
-      box-shadow: 0 24px 64px rgba(37,99,235,0.22);
-      animation: fadeUp 0.9s 0.7s both;
-    }
-
-    .hero-photo {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      border: 4px solid var(--white);
-      display: block;
-    }
-
-    .hero-info-cards {
-      display: flex;
-      gap: 1rem;
-      animation: fadeUp 0.9s 1s both;
-    }
-
-    .hero-card {
-      background: var(--gray);
-      border-radius: 4px;
-      padding: 0.9rem 1.2rem;
-      border: 1px solid var(--border);
-      flex: 1;
-      text-align: center;
-    }
-
-    .card-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--slate);
-      margin-bottom: 0.35rem;
-    }
-
-    .card-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1.3;
-    }
-
-    /* SECTION BASE */
-    section { padding: 6rem max(5rem, calc((100% - 1100px) / 2)); }
-
-    .section-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1.1;
-      margin-bottom: 3rem;
-    }
-
-    /* SKILLS */
-    .skills-section {
-      background: var(--gray);
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .skill-card {
-      background: var(--white);
-      border-radius: 4px;
-      padding: 1.5rem;
-      border-left: 3px solid var(--blue);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(37,99,235,0.1); }
-
-    .skill-icon { margin-bottom: 0.75rem; color: var(--blue); }
-
-    .skill-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 0.4rem;
-    }
-
-    .skill-desc {
-      font-size: 0.82rem;
-      color: var(--slate);
-      line-height: 1.5;
-    }
-
-    /* ABOUT */
-    .about-section {
-      background: var(--navy);
-      color: var(--white);
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .about-section > * { min-width: 0; }
-
-    .hobbies { overflow: hidden; }
-
-    .about-section .section-title { color: var(--white); }
-    .about-section .section-label { color: var(--blue-light); }
-
-    .about-text {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.8;
-      font-weight: 300;
-    }
-
-    /* HOBBY ACCORDION */
-    .hobbies {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .hobby {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 4px;
-      overflow: hidden;
-      transition: border-color 0.2s;
-    }
-
-    .hobby.open {
-      border-color: rgba(59,130,246,0.4);
-    }
-
-    .hobby-header {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      padding: 1.2rem 1.5rem;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.2s;
-    }
-
-    .hobby-header:hover { background: rgba(255,255,255,0.06); }
-
-    .hobby-icon { color: var(--blue-light); flex-shrink: 0; }
-
-    .hobby-text { flex: 1; }
-
-    .hobby-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .hobby-sub {
-      font-size: 0.8rem;
-      color: rgba(147,197,253,0.85);
-      margin-top: 0.2rem;
-    }
-
-    .hobby-chevron {
-      color: rgba(255,255,255,0.4);
-      flex-shrink: 0;
-      transition: transform 0.3s, color 0.2s;
-    }
-
-    .hobby.open .hobby-chevron {
-      transform: rotate(180deg);
-      color: var(--blue-light);
-    }
-
-    /* PHOTO STRIP (accordion body) */
-    .hobby-photos {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-
-    .hobby.open .hobby-photos {
-      max-height: 220px;
-    }
-
-    .photo-strip {
-      display: flex;
-      gap: 0.6rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 0 1.5rem 1.2rem;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,0.15) transparent;
-    }
-
-    .photo-strip::-webkit-scrollbar { height: 3px; }
-    .photo-strip::-webkit-scrollbar-track { background: transparent; }
-    .photo-strip::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
-
-    .photo-strip img {
-      width: 160px;
-      height: 110px;
-      object-fit: cover;
-      border-radius: 3px;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: block;
-    }
-
-    .photo-strip img:hover {
-      transform: scale(1.04);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    }
-
-    /* LIGHTBOX */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(10,15,30,0.93);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      cursor: zoom-out;
-      backdrop-filter: blur(4px);
-    }
-
-    .lightbox.open { display: flex; }
-
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 88vh;
-      object-fit: contain;
-      border-radius: 4px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
-      cursor: default;
-      animation: fadeUp 0.2s ease forwards;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 1.5rem; right: 2rem;
-      color: rgba(255,255,255,0.7);
-      font-size: 2rem;
-      cursor: pointer;
-      line-height: 1;
-      transition: color 0.2s;
-      background: none;
-      border: none;
-    }
-    .lightbox-close:hover { color: var(--white); }
-
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.1);
-      border: none;
-      color: var(--white);
-      font-size: 1.8rem;
-      padding: 0.8rem 1rem;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: background 0.2s;
-      line-height: 1;
-    }
-    .lightbox-nav:hover { background: rgba(255,255,255,0.2); }
-    .lightbox-prev { left: 1.5rem; }
-    .lightbox-next { right: 1.5rem; }
-
-    /* CONTACT */
-    .contact-section {
-      background: var(--white);
-      text-align: center;
-    }
-
-    .contact-section .section-label,
-    .contact-section .section-title { text-align: center; }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-    .contact-card {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      padding: 1.1rem 2rem;
-      background: var(--gray);
-      border-radius: 4px;
-      text-decoration: none;
-      color: var(--navy);
-      font-weight: 500;
-      font-size: 0.9rem;
-      box-shadow: 0 4px 20px rgba(30,58,95,0.07);
-      transition: all 0.25s;
-      border: 1px solid transparent;
-    }
-
-    .contact-card:hover {
-      border-color: var(--blue);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(37,99,235,0.12);
-    }
-
-    .contact-card-icon { color: var(--blue); flex-shrink: 0; }
-
-    /* FOOTER */
-    footer {
-      background: var(--dark);
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
-    }
-
-    footer span { color: var(--blue-light); }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* PROJECTS */
-    .projects-section {
-      background: var(--white);
-    }
-    .projects-section .section-title {
-      margin-bottom: 0.75rem;
-    }
-    .projects-intro {
-      font-size: 0.95rem;
-      color: var(--slate);
-      line-height: 1.7;
-      margin-bottom: 3rem;
-      max-width: 600px;
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: var(--gray);
-      border-radius: 4px;
-      padding: 2rem;
-      border-top: 3px solid var(--blue);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(37,99,235,0.1);
-    }
-    .project-icon {
-      color: var(--blue);
-    }
-    .project-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--navy);
-    }
-    .project-desc {
-      font-size: 0.88rem;
-      color: var(--slate);
-      line-height: 1.7;
-      flex: 1;
-    }
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .project-tag {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      background: rgba(37,99,235,0.08);
-      color: var(--blue);
-      padding: 0.25rem 0.6rem;
-      border-radius: 2px;
-    }
-    @media (max-width: 900px) {
-      .projects-grid { grid-template-columns: 1fr; }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 8rem 2rem 3rem; }
-      .hero-left::after { display: none; }
-      .hero-right {
-        display: flex;
-        padding: 2rem 2rem 4rem;
-        background: var(--navy);
-        justify-content: center;
-      }
-      .hero-visual { align-items: center; }
-      .photo-ring { width: 180px; height: 180px; }
-      .hero-info-cards { justify-content: center; }
-      .hero-card { min-width: 90px; }
-      .skills-section { grid-template-columns: 1fr; padding: 4rem 2rem; }
-      .about-section { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2.5rem; }
-      section { padding: 4rem 2rem; }
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.2rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
 
-  <nav>
-    <div class="nav-logo">JL</div>
-    <ul class="nav-links">
-      <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/index.html" class="nav-logo">JL</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/projects/index.html">Projects</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/assets/resume/Lutton-Resume.pdf" download>Resume</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-left">
-      <p class="hero-tag">IT Support Specialist</p>
-      <h1 class="hero-name">Jackson<span>Lutton.</span></h1>
-      <p class="hero-desc">Helping people and teams work better through technology. Experienced in Google Workspace and Microsoft environments — keeping systems running smoothly so others can focus on what matters.</p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">Get in Touch</a>
-        <a href="Copy of Lutton-Resume-1.pdf" download class="btn btn-outline">Download Resume</a>
-        <a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" class="btn btn-outline">LinkedIn</a>
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <p class="hero-tag">IT Support Specialist</p>
+        <h1 class="hero-name">Jackson<span>Lutton.</span></h1>
+        <p class="hero-desc">Helping people and teams work better through technology. Experienced in Microsoft 365 and Google Workspace environments — keeping systems running smoothly so others can focus on what matters.</p>
+        <div class="hero-cta">
+          <a href="/projects/index.html" class="btn btn-primary">See Projects</a>
+          <a href="/assets/resume/Lutton-Resume.pdf" download class="btn btn-outline">Download Resume</a>
+        </div>
       </div>
+      <div class="hero-right">
+        <div class="hero-visual">
+          <div class="photo-ring">
+            <img src="/assets/images/pfp.JPG" alt="Jackson Lutton" class="hero-photo">
+          </div>
+          <div class="hero-info-cards">
+            <div class="hero-card">
+              <div class="card-label">Based In</div>
+              <div class="card-value">DFW, Texas</div>
+            </div>
+            <div class="hero-card">
+              <div class="card-label">Focus</div>
+              <div class="card-value">IT Support</div>
+            </div>
+            <div class="hero-card">
+              <div class="card-label">Status</div>
+              <div class="card-value">Open to Roles</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT I WORK WITH -->
+    <section id="skills" class="skills-section">
+      <div>
+        <p class="section-label">What I Work With</p>
+        <h2 class="section-title">Technical Skills & Expertise</h2>
+        <p style="font-size:0.95rem; color:var(--slate); line-height:1.7;">Providing reliable, people-first IT support across modern cloud environments. Comfortable diagnosing issues and communicating solutions clearly — whether remote or in person.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+          <div class="skill-name">Cloud & Identity</div>
+          <div class="skill-desc">Microsoft 365, Entra ID (Azure AD), and Google Workspace administration.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+          </div>
+          <div class="skill-name">Endpoint Management</div>
+          <div class="skill-desc">Intune, Autopilot, and Windows device provisioning and policy management.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <div class="skill-name">Networking</div>
+          <div class="skill-desc">Switch configuration and documentation, currently studying for CompTIA Network+.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          </div>
+          <div class="skill-name">Help Desk Support</div>
+          <div class="skill-desc">Ticket management, user onboarding, troubleshooting hardware and software issues.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS -->
+    <section id="projects" class="projects-section">
+      <p class="section-label">Work I've Done</p>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="projects-intro">Real IT projects from the job, plus a homelab I run to keep the same skills sharp on my own time.</p>
+      <div class="projects-grid">
+
+        <a href="/projects/azure-intune-migration.html" class="project-card">
+          <div class="project-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div class="project-title">Azure AD & Intune Migration</div>
+          <div class="project-desc">Led the transition of company devices off an on-premises Active Directory server into Azure AD via an Intune enrollment and reset workflow.</div>
+          <div class="project-tags">
+            <span class="project-tag">Azure AD</span>
+            <span class="project-tag">Intune</span>
+          </div>
+          <span class="project-read-more">Read more &rarr;</span>
+        </a>
+
+        <a href="/projects/homelab.html" class="project-card">
+          <div class="project-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <div class="project-title">Proxmox Homelab</div>
+          <div class="project-desc">A Proxmox VE server running VMs and LXC containers for DNS filtering, reverse proxying, and monitoring — practicing the building blocks used in client environments.</div>
+          <div class="project-tags">
+            <span class="project-tag">Proxmox</span>
+            <span class="project-tag">Self-hosting</span>
+          </div>
+          <span class="project-read-more">Read more &rarr;</span>
+        </a>
+
+        <a href="/projects/home-assistant.html" class="project-card">
+          <div class="project-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+          </div>
+          <div class="project-title">Home Assistant Apartment Build</div>
+          <div class="project-desc">A renter-safe smart home build staged from HomeKit to a full Home Assistant hub, with Zigbee and Matter expansion.</div>
+          <div class="project-tags">
+            <span class="project-tag">Home Assistant</span>
+            <span class="project-tag">Zigbee</span>
+          </div>
+          <span class="project-read-more">Read more &rarr;</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ABOUT TEASER -->
+    <section class="about-section" style="grid-template-columns: 1fr; text-align: center;">
+      <div>
+        <p class="section-label">Beyond the Desk</p>
+        <h2 class="section-title">A Little About Me</h2>
+        <p class="about-text" style="max-width: 640px; margin-left: auto; margin-right: auto;">I'm a tech professional with a passion for solving problems and helping people — whether that's getting someone's email working again or setting up a whole new office environment. When I'm not at a keyboard, you'll find me outdoors, on the water, or on the course.</p>
+        <div style="margin-top: 1.5rem;">
+          <a href="/about.html" class="btn btn-outline">More About Me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <p class="section-label">Let's Connect</p>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-links">
+        <a class="contact-card" href="mailto:luttonjackson@gmail.com">
+          <span class="contact-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg></span>
+          luttonjackson@gmail.com
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">
+          <span class="contact-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
+          LinkedIn
+        </a>
+        <a class="contact-card" href="https://github.com/jlutton12" target="_blank" rel="noopener">
+          <span class="contact-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></span>
+          GitHub — jlutton12
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">Jackson Lutton</div>
+      <ul class="footer-links">
+        <li><a href="mailto:luttonjackson@gmail.com">Email</a></li>
+        <li><a href="https://github.com/jlutton12" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
     </div>
-    <div class="hero-right">
-      <div class="hero-visual">
-        <div class="photo-ring">
-          <img src="pfp.JPG" alt="Jackson Lutton" class="hero-photo">
-        </div>
-        <div class="hero-info-cards">
-          <div class="hero-card">
-            <div class="card-label">Based In</div>
-            <div class="card-value">Dallas, TX</div>
-          </div>
-          <div class="hero-card">
-            <div class="card-label">Focus</div>
-            <div class="card-value">IT Support</div>
-          </div>
-          <div class="hero-card">
-            <div class="card-label">Status</div>
-            <div class="card-value">Open to Roles</div>
-          </div>
-        </div>
-      </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 <span>Jackson Lutton</span> &middot; jacksonlutton.com &middot; Built with plain HTML/CSS/JS, hosted on <span>Netlify</span>.</p>
     </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" class="projects-section">
-    <p class="section-label">Work I've Done</p>
-    <h2 class="section-title">Projects & Initiatives</h2>
-    <p class="projects-intro">A few examples of real IT projects I've led or contributed to — from infrastructure migrations to user training and everything in between.</p>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
-        <div class="project-title">Azure AD & Intune Migration</div>
-        <div class="project-desc">Led the transition of company devices off an on-premises Active Directory server into Azure AD via an Intune enrollment and reset workflow. Coordinated the process to minimize downtime and ensured all devices were properly enrolled and policy-compliant post-migration.</div>
-        <div class="project-tags">
-          <span class="project-tag">Azure AD</span>
-          <span class="project-tag">Intune</span>
-          <span class="project-tag">Microsoft 365</span>
-          <span class="project-tag">Device Management</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-        </div>
-        <div class="project-title">Network Switch Replacement</div>
-        <div class="project-desc">Managed a full network switch replacement, beginning with thoroughly documenting the existing switch configuration. Configured the new hardware to mirror the original setup, ensuring a seamless cutover with no disruption to network services.</div>
-        <div class="project-tags">
-          <span class="project-tag">Networking</span>
-          <span class="project-tag">Infrastructure</span>
-          <span class="project-tag">Documentation</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        </div>
-        <div class="project-title">Uniflow Cloud Print Migration</div>
-        <div class="project-desc">Migrated the organization to a Uniflow Cloud print server, handling the full rollout from software installation and configuration to hands-on user training. Ensured all staff were comfortable with the new system before go-live.</div>
-        <div class="project-tags">
-          <span class="project-tag">Uniflow</span>
-          <span class="project-tag">Print Management</span>
-          <span class="project-tag">User Training</span>
-          <span class="project-tag">Cloud</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills" class="skills-section">
-    <div>
-      <p class="section-label">What I Do</p>
-      <h2 class="section-title">Technical Skills & Expertise</h2>
-      <p style="font-size:0.95rem; color:var(--slate); line-height:1.7;">Providing reliable, people-first IT support across modern cloud environments. Comfortable diagnosing issues and communicating solutions clearly — whether remote or in person.</p>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-        </div>
-        <div class="skill-name">Microsoft 365</div>
-        <div class="skill-desc">Outlook, Teams, SharePoint, OneDrive, Azure AD, and Intune device management.</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-        </div>
-        <div class="skill-name">Google Workspace</div>
-        <div class="skill-desc">Gmail, Drive, Meet, Admin Console, Chromebook management and provisioning.</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-        </div>
-        <div class="skill-name">Help Desk Support</div>
-        <div class="skill-desc">Ticket management, user onboarding, troubleshooting hardware and software issues.</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="skill-name">IT Security</div>
-        <div class="skill-desc">Password policies, MFA setup, phishing awareness and access management.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="about-section">
-    <div>
-      <p class="section-label">Beyond the Desk</p>
-      <h2 class="section-title">A Little About Me</h2>
-      <p class="about-text">I'm a tech professional with a passion for solving problems and helping people — whether that's getting someone's email working again or setting up a whole new office environment. When I'm not at a keyboard, you'll find me outdoors, on the water, or on the course.</p>
-      <br/>
-      <p class="about-text">I believe good IT support is as much about communication as it is about technical knowledge. My goal is always to leave people feeling confident and taken care of.</p>
-    </div>
-
-    <div class="hobbies">
-
-      <!-- FISHING -->
-      <div class="hobby" id="hobby-fishing">
-        <div class="hobby-header" onclick="toggleHobby('hobby-fishing')">
-          <div class="hobby-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2l4 4-9.5 9.5"/><path d="M14.5 5.5l4 4"/><path d="M3 22c3-3 4.5-6.5 4-10"/><path d="M7 12c-1 2.5-1 5.5 0 8"/></svg>
-          </div>
-          <div class="hobby-text">
-            <div class="hobby-name">Fishing</div>
-            <div class="hobby-sub">Any chance I get — lakes, rivers, wherever the fish are biting</div>
-          </div>
-          <div class="hobby-chevron">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-        </div>
-        <div class="hobby-photos">
-          <div class="photo-strip" data-category="fishing">
-            <img src="fishing1.jpeg" alt="Fishing" loading="lazy">
-            <img src="fishing2.jpg"  alt="Fishing" loading="lazy">
-            <img src="fishing3.jpeg" alt="Fishing" loading="lazy">
-            <img src="fishing4.jpeg" alt="Fishing" loading="lazy">
-            <img src="fishing5.JPG"  alt="Fishing" loading="lazy">
-            <img src="fishing6.jpeg" alt="Fishing" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-      <!-- GOLF -->
-      <div class="hobby" id="hobby-golf">
-        <div class="hobby-header" onclick="toggleHobby('hobby-golf')">
-          <div class="hobby-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><path d="M18 20h4"/><path d="M20 18v4"/></svg>
-          </div>
-          <div class="hobby-text">
-            <div class="hobby-name">Golf</div>
-            <div class="hobby-sub">Always working on the short game</div>
-          </div>
-          <div class="hobby-chevron">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-        </div>
-        <div class="hobby-photos">
-          <div class="photo-strip" data-category="golf">
-            <img src="golf1.jpeg" alt="Golf" loading="lazy">
-            <img src="golf2.jpeg" alt="Golf" loading="lazy">
-            <img src="golf3.JPG"  alt="Golf" loading="lazy">
-            <img src="golf4.jpeg" alt="Golf" loading="lazy">
-            <img src="golf5.jpeg" alt="Golf" loading="lazy">
-            <img src="golf6.JPG"  alt="Golf" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-      <!-- OUTDOORS -->
-      <div class="hobby" id="hobby-outdoors">
-        <div class="hobby-header" onclick="toggleHobby('hobby-outdoors')">
-          <div class="hobby-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-8 4 5 3-3 4 6"/><path d="M3 21h18"/></svg>
-          </div>
-          <div class="hobby-text">
-            <div class="hobby-name">The Outdoors</div>
-            <div class="hobby-sub">Hiking, camping, and time in nature — a hard reset from screen life</div>
-          </div>
-          <div class="hobby-chevron">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-        </div>
-        <div class="hobby-photos">
-          <div class="photo-strip" data-category="outdoors">
-            <img src="outdoor1.jpeg" alt="Outdoors" loading="lazy">
-            <img src="outdoor2.jpeg" alt="Outdoors" loading="lazy">
-            <img src="outdoor3.jpeg" alt="Outdoors" loading="lazy">
-            <img src="outdoor4.jpeg" alt="Outdoors" loading="lazy">
-            <img src="outdoor5.jpeg" alt="Outdoors" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lb-close">&times;</button>
-    <button class="lightbox-nav lightbox-prev" id="lb-prev">&#8249;</button>
-    <img id="lb-img" src="" alt="Photo">
-    <button class="lightbox-nav lightbox-next" id="lb-next">&#8250;</button>
-  </div>
-
-  <!-- CONTACT -->
-  <section id="contact" class="contact-section">
-    <p class="section-label">Let's Connect</p>
-    <h2 class="section-title">Get In Touch</h2>
-    <div class="contact-links">
-      <a class="contact-card" href="mailto:luttonjackson@gmail.com">
-        <span class="contact-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg></span>
-        luttonjackson@gmail.com
-      </a>
-      <a class="contact-card" href="https://www.linkedin.com/in/jackson-lutton" target="_blank">
-        <span class="contact-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
-        LinkedIn
-      </a>
-      <a class="contact-card" href="https://github.com/jlutton12" target="_blank">
-        <span class="contact-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></span>
-        GitHub — jlutton12
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2026 <span>Jackson Lutton</span> · jacksonlutton.com</p>
   </footer>
 
-  <script>
-    // Accordion toggle
-    function toggleHobby(id) {
-      const el = document.getElementById(id);
-      const isOpen = el.classList.contains('open');
-      // Close all first
-      document.querySelectorAll('.hobby').forEach(h => h.classList.remove('open'));
-      // Open clicked one if it wasn't already open
-      if (!isOpen) el.classList.add('open');
-    }
-
-    // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lbImg    = document.getElementById('lb-img');
-    const lbClose  = document.getElementById('lb-close');
-    const lbPrev   = document.getElementById('lb-prev');
-    const lbNext   = document.getElementById('lb-next');
-
-    let currentImages = [];
-    let currentIndex  = 0;
-
-    function openLightbox(imgs, index) {
-      currentImages = imgs;
-      currentIndex  = index;
-      lbImg.src = currentImages[currentIndex].src;
-      lightbox.classList.add('open');
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      lbImg.src = '';
-    }
-
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-      lbImg.src = currentImages[currentIndex].src;
-    }
-
-    function showNext() {
-      currentIndex = (currentIndex + 1) % currentImages.length;
-      lbImg.src = currentImages[currentIndex].src;
-    }
-
-    document.querySelectorAll('.photo-strip').forEach(strip => {
-      const imgs = Array.from(strip.querySelectorAll('img'));
-      imgs.forEach((img, i) => {
-        img.addEventListener('click', () => openLightbox(imgs, i));
-      });
-    });
-
-    lbClose.addEventListener('click', closeLightbox);
-    lbPrev.addEventListener('click', e => { e.stopPropagation(); showPrev(); });
-    lbNext.addEventListener('click', e => { e.stopPropagation(); showNext(); });
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-
-    document.addEventListener('keydown', e => {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'ArrowLeft')  showPrev();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'Escape')     closeLightbox();
-    });
-  </script>
-
+  <script src="/js/main.js"></script>
 </body>
 </html>

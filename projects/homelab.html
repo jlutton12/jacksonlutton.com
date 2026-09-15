@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proxmox Homelab — Jackson Lutton</title>
+  <meta name="description" content="A Dell OptiPlex running Proxmox VE with a Home Assistant VM, a Windows 11 lab VM, and LXC containers for Pi-hole, Nginx Proxy Manager, Portainer, and Uptime Kuma, reachable over Tailscale."/>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <meta property="og:title" content="Proxmox Homelab — Jackson Lutton"/>
+  <meta property="og:description" content="Virtualization, DNS filtering, reverse proxying, and monitoring on a Proxmox homelab."/>
+  <meta property="og:type" content="article"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/index.html" class="nav-logo">JL</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/projects/index.html">Projects</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/assets/resume/Lutton-Resume.pdf" download>Resume</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="case-hero">
+      <p class="case-hero-eyebrow">Case Study — Personal Homelab</p>
+      <h1>Proxmox Homelab</h1>
+      <p class="case-hero-summary">A repurposed Dell OptiPlex running Proxmox VE, hosting the VMs and containers I use to practice virtualization, DNS filtering, reverse proxying, and monitoring — the same building blocks I work with in client environments.</p>
+      <div class="project-tags">
+        <span class="project-tag">Proxmox VE</span>
+        <span class="project-tag">LXC</span>
+        <span class="project-tag">Pi-hole</span>
+        <span class="project-tag">Nginx Proxy Manager</span>
+        <span class="project-tag">Tailscale</span>
+      </div>
+    </header>
+
+    <div class="case-body">
+      <section class="case-section">
+        <h2>Problem</h2>
+        <p>At an MSP you touch virtualization, DNS, reverse proxies, containers, and monitoring every week — but usually in someone else's environment, under time pressure, and without room to break things. I wanted a place where I could build those pieces from scratch, understand how they fit together, and troubleshoot them when they fail.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>What I built</h2>
+        <p>The host is a Dell OptiPlex desktop with 32 GB of RAM and 512 GB of storage, running Proxmox VE. On top of it:</p>
+        <ul>
+          <li><strong>Home Assistant OS</strong> — a full VM that powers the <a href="/projects/home-assistant.html">apartment smart-home build</a>.</li>
+          <li><strong>Windows 11</strong> — a test/lab VM for trying policies, software, and troubleshooting steps before touching a real machine.</li>
+          <li><strong>Pi-hole</strong> (LXC) — network-wide DNS filtering and ad blocking.</li>
+          <li><strong>Nginx Proxy Manager</strong> (LXC) — a reverse proxy so every internal service gets a clean hostname and TLS instead of an IP and a port number.</li>
+          <li><strong>Portainer</strong> (LXC) — container management with a UI.</li>
+          <li><strong>Uptime Kuma</strong> (LXC) — uptime monitoring and alerting for everything above.</li>
+        </ul>
+        <p>Remote access runs over Tailscale, so I can reach the lab from anywhere without opening ports on the router.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Architecture</h2>
+        <div class="case-diagram">
+          <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: Internet connects to the router, which connects to the OptiPlex running Proxmox. Inside Proxmox are the Home Assistant VM, Windows 11 VM, and LXC containers for Pi-hole, Nginx Proxy Manager, Portainer, and Uptime Kuma. A dashed Tailscale overlay provides remote access.">
+            <defs>
+              <marker id="arrow-hl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#64748b"/>
+              </marker>
+            </defs>
+
+            <!-- Internet -->
+            <rect x="20" y="150" width="120" height="50" rx="25" fill="#f1f5f9" stroke="#e2e8f0"/>
+            <text x="80" y="180" font-family="DM Sans, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Internet</text>
+
+            <line x1="140" y1="175" x2="185" y2="175" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-hl)"/>
+
+            <!-- Router -->
+            <rect x="195" y="150" width="110" height="50" rx="6" fill="#1e3a5f"/>
+            <text x="250" y="180" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">Router</text>
+
+            <line x1="305" y1="175" x2="350" y2="175" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-hl)"/>
+
+            <!-- Proxmox host -->
+            <rect x="360" y="30" width="380" height="300" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+            <text x="550" y="55" font-family="Playfair Display, serif" font-size="14" font-weight="700" fill="#1e3a5f" text-anchor="middle">Dell OptiPlex — Proxmox VE</text>
+            <text x="550" y="72" font-family="DM Sans, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">32 GB RAM · 512 GB storage</text>
+
+            <!-- VMs row -->
+            <text x="380" y="100" font-family="DM Sans, sans-serif" font-size="11" fill="#64748b">VMs</text>
+            <rect x="380" y="108" width="165" height="46" rx="5" fill="#2563eb"/>
+            <text x="462" y="128" font-family="DM Sans, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Home Assistant OS</text>
+            <text x="462" y="144" font-family="DM Sans, sans-serif" font-size="11" fill="#bfdbfe" text-anchor="middle">smart home hub</text>
+
+            <rect x="555" y="108" width="165" height="46" rx="5" fill="#2563eb"/>
+            <text x="637" y="128" font-family="DM Sans, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Windows 11</text>
+            <text x="637" y="144" font-family="DM Sans, sans-serif" font-size="11" fill="#bfdbfe" text-anchor="middle">test / lab machine</text>
+
+            <!-- LXC row -->
+            <text x="380" y="185" font-family="DM Sans, sans-serif" font-size="11" fill="#64748b">LXC containers</text>
+            <rect x="380" y="193" width="80" height="42" rx="5" fill="#f1f5f9" stroke="#e2e8f0"/>
+            <text x="420" y="218" font-family="DM Sans, sans-serif" font-size="12" fill="#1e3a5f" text-anchor="middle">Pi-hole</text>
+
+            <rect x="467" y="193" width="80" height="42" rx="5" fill="#f1f5f9" stroke="#e2e8f0"/>
+            <text x="507" y="212" font-family="DM Sans, sans-serif" font-size="11" fill="#1e3a5f" text-anchor="middle">Nginx Proxy</text>
+            <text x="507" y="225" font-family="DM Sans, sans-serif" font-size="11" fill="#1e3a5f" text-anchor="middle">Manager</text>
+
+            <rect x="554" y="193" width="80" height="42" rx="5" fill="#f1f5f9" stroke="#e2e8f0"/>
+            <text x="594" y="218" font-family="DM Sans, sans-serif" font-size="12" fill="#1e3a5f" text-anchor="middle">Portainer</text>
+
+            <rect x="641" y="193" width="80" height="42" rx="5" fill="#f1f5f9" stroke="#e2e8f0"/>
+            <text x="681" y="212" font-family="DM Sans, sans-serif" font-size="11" fill="#1e3a5f" text-anchor="middle">Uptime</text>
+            <text x="681" y="225" font-family="DM Sans, sans-serif" font-size="11" fill="#1e3a5f" text-anchor="middle">Kuma</text>
+
+            <!-- Tailscale overlay -->
+            <rect x="372" y="258" width="356" height="56" rx="6" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <text x="550" y="281" font-family="DM Sans, sans-serif" font-size="12" fill="#2563eb" text-anchor="middle">Tailscale overlay — remote access</text>
+            <text x="550" y="299" font-family="DM Sans, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">no inbound ports on the router</text>
+
+            <!-- Remote device -->
+            <rect x="20" y="258" width="120" height="56" rx="6" fill="#f1f5f9" stroke="#3b82f6" stroke-dasharray="6 4"/>
+            <text x="80" y="282" font-family="DM Sans, sans-serif" font-size="12" fill="#1e3a5f" text-anchor="middle">My laptop /</text>
+            <text x="80" y="298" font-family="DM Sans, sans-serif" font-size="12" fill="#1e3a5f" text-anchor="middle">phone (away)</text>
+            <line x1="140" y1="286" x2="365" y2="286" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-hl)"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Stack &amp; tools</h2>
+        <ul>
+          <li>Proxmox VE — hypervisor for both full VMs and lightweight LXC containers</li>
+          <li>Home Assistant OS — runs as a VM so it gets its own kernel and full add-on support</li>
+          <li>Pi-hole — DNS sinkhole for the whole network</li>
+          <li>Nginx Proxy Manager — reverse proxy with a UI for hostnames and TLS certs</li>
+          <li>Portainer — Docker/container management</li>
+          <li>Uptime Kuma — status page and alerts</li>
+          <li>Tailscale — WireGuard-based mesh VPN for remote access</li>
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>What I learned</h2>
+        <p><strong>LXC vs VM is a real trade-off.</strong> Containers share the host kernel, so they start instantly and use a fraction of the RAM — perfect for small services like Pi-hole or Uptime Kuma. Anything that needs its own kernel, hardware passthrough, or a different OS (Home Assistant OS, Windows 11) has to be a VM. Picking the wrong one either wastes resources or hits a wall.</p>
+        <p><strong>A reverse proxy simplifies everything behind it.</strong> Before Nginx Proxy Manager, every service was an IP and a port I had to remember. After, each one is a hostname with a valid certificate, and adding a new service is a two-minute job.</p>
+        <p><strong>Uptime monitoring changed how I troubleshoot.</strong> Uptime Kuma tells me when something broke and roughly when — so instead of noticing an outage hours later and guessing, I can correlate it with what I changed. That habit carries directly into client work.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>What's next</h2>
+        <p><span class="todo">[TODO — Jackson to fill in]</span></p>
+      </section>
+
+      <section class="case-section">
+        <h2>Gallery</h2>
+        <div class="case-gallery">
+          <div class="case-gallery-item">homelab-01.png — Proxmox dashboard showing all guests</div>
+          <div class="case-gallery-item">homelab-02.png — Pi-hole query stats</div>
+          <div class="case-gallery-item">homelab-03.png — Nginx Proxy Manager proxy hosts</div>
+          <div class="case-gallery-item">homelab-04.png — Uptime Kuma status page</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="case-nav">
+    <a href="/projects/uniflow-print-migration.html" class="btn btn-outline-dark">&larr; Uniflow Cloud Print</a>
+    <a href="/projects/home-assistant.html" class="btn btn-outline-dark">Home Assistant Build &rarr;</a>
+  </nav>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">Jackson Lutton</div>
+      <ul class="footer-links">
+        <li><a href="mailto:luttonjackson@gmail.com">Email</a></li>
+        <li><a href="https://github.com/jlutton12" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 <span>Jackson Lutton</span> &middot; jacksonlutton.com &middot; Built with plain HTML/CSS/JS, hosted on <span>Netlify</span>.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

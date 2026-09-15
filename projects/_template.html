@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+  Case-study template. Not a live route — copy this file to
+  /projects/<slug>.html and replace every [BRACKETED] placeholder.
+  Keep the header/footer byte-identical to every other page.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>[Project Title] — Jackson Lutton</title>
+  <meta name="description" content="[One-sentence project summary for search results.]"/>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <meta property="og:title" content="[Project Title] — Jackson Lutton"/>
+  <meta property="og:description" content="[One-sentence project summary.]"/>
+  <meta property="og:type" content="article"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/index.html" class="nav-logo">JL</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/projects/index.html">Projects</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/assets/resume/Lutton-Resume.pdf" download>Resume</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="case-hero">
+      <p class="case-hero-eyebrow">Case Study</p>
+      <h1>[Project Title]</h1>
+      <p class="case-hero-summary">[One-line summary of what this project is and why it exists.]</p>
+      <!-- Optional status badge for in-progress projects, e.g. personal builds:
+      <span class="case-hero-status">In Progress</span> -->
+      <div class="project-tags">
+        <span class="project-tag">[Stack]</span>
+        <span class="project-tag">[Stack]</span>
+        <span class="project-tag">[Stack]</span>
+      </div>
+    </header>
+
+    <div class="case-body">
+      <section class="case-section">
+        <h2>Problem</h2>
+        <p>[What situation or need prompted this project?]</p>
+      </section>
+
+      <section class="case-section">
+        <h2>What I built</h2>
+        <p>[What was actually implemented, in plain language.]</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Architecture</h2>
+        <div class="case-diagram">
+          <!-- Inline SVG diagram goes here. Use var(--navy)/var(--blue)/var(--gray) etc. via CSS vars where possible. -->
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Stack &amp; tools</h2>
+        <ul>
+          <li>[Tool/technology — why it was chosen]</li>
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>What I learned</h2>
+        <p>[Concrete takeaway, trade-off, or skill gained.]</p>
+      </section>
+
+      <section class="case-section">
+        <h2>What's next</h2>
+        <p>[Planned follow-up work, or mark <span class="todo">[TODO]</span>.]</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Gallery</h2>
+        <div class="case-gallery">
+          <div class="case-gallery-item">[slug]-01.png — [what to screenshot]</div>
+          <div class="case-gallery-item">[slug]-02.png — [what to screenshot]</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="case-nav">
+    <a href="/projects/index.html" class="btn btn-outline-dark">&larr; All projects</a>
+  </nav>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">Jackson Lutton</div>
+      <ul class="footer-links">
+        <li><a href="mailto:luttonjackson@gmail.com">Email</a></li>
+        <li><a href="https://github.com/jlutton12" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 <span>Jackson Lutton</span> &middot; jacksonlutton.com &middot; Built with plain HTML/CSS/JS, hosted on <span>Netlify</span>.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

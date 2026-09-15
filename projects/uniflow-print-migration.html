@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Uniflow Cloud Print Migration — Jackson Lutton</title>
+  <meta name="description" content="Migrating an organization to a Uniflow Cloud print server — software rollout, configuration, and hands-on user training before go-live."/>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <meta property="og:title" content="Uniflow Cloud Print Migration — Jackson Lutton"/>
+  <meta property="og:description" content="Rolling out Uniflow Cloud print management from installation through user training."/>
+  <meta property="og:type" content="article"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/index.html" class="nav-logo">JL</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/projects/index.html">Projects</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/assets/resume/Lutton-Resume.pdf" download>Resume</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="case-hero">
+      <p class="case-hero-eyebrow">Case Study — MSP Client Work</p>
+      <h1>Uniflow Cloud Print Migration</h1>
+      <p class="case-hero-summary">Moved an organization onto a Uniflow Cloud print server, owning the rollout from installation and configuration through training every staff member before go-live.</p>
+      <div class="project-tags">
+        <span class="project-tag">Uniflow</span>
+        <span class="project-tag">Print Management</span>
+        <span class="project-tag">User Training</span>
+        <span class="project-tag">Cloud</span>
+      </div>
+    </header>
+
+    <div class="case-body">
+      <section class="case-section">
+        <h2>Problem</h2>
+        <p>The organization's print setup depended on on-premises infrastructure and manual driver installs. It needed a cloud-managed print service that worked across devices, was easier to administer, and — critically — didn't confuse the people who just wanted to print.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>What I built</h2>
+        <p>I handled the full rollout of Uniflow Cloud: installing and configuring the software, connecting the printers, and deploying the client to user machines. Rather than flipping the switch and hoping for the best, I ran hands-on training sessions so staff understood the new workflow before it went live. Go-live was quiet — which is the goal.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Architecture</h2>
+        <div class="case-diagram">
+          <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: user devices send jobs to Uniflow Cloud, which manages and releases them to office printers.">
+            <defs>
+              <marker id="arrow-upm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#64748b"/>
+              </marker>
+            </defs>
+            <rect x="20" y="40" width="160" height="50" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
+            <text x="100" y="70" font-family="DM Sans, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Staff laptops</text>
+            <rect x="20" y="110" width="160" height="50" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
+            <text x="100" y="140" font-family="DM Sans, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Staff desktops</text>
+
+            <line x1="180" y1="65" x2="260" y2="95" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-upm)"/>
+            <line x1="180" y1="135" x2="260" y2="105" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-upm)"/>
+
+            <rect x="270" y="70" width="180" height="60" rx="6" fill="#1e3a5f"/>
+            <text x="360" y="95" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">Uniflow Cloud</text>
+            <text x="360" y="113" font-family="DM Sans, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">queue · auth · release</text>
+
+            <line x1="450" y1="95" x2="530" y2="65" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-upm)"/>
+            <line x1="450" y1="105" x2="530" y2="135" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-upm)"/>
+
+            <rect x="540" y="40" width="160" height="50" rx="6" fill="#2563eb"/>
+            <text x="620" y="70" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">Printer A</text>
+            <rect x="540" y="110" width="160" height="50" rx="6" fill="#2563eb"/>
+            <text x="620" y="140" font-family="DM Sans, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">Printer B</text>
+          </svg>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Stack &amp; tools</h2>
+        <ul>
+          <li>Uniflow Cloud — cloud print management, queue, and secure release</li>
+          <li>Printer fleet — <span class="todo">[TODO — vendor/models]</span></li>
+          <li>Client deployment to Windows endpoints</li>
+          <li>Short written guides and live training sessions for staff</li>
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>What I learned</h2>
+        <p>Technical rollouts fail on the human side more often than the technical side. Spending time on training up front meant almost no support tickets after go-live, which was worth far more than the hours it took. I also got comfortable owning a project end to end — from vendor software to the person standing at the printer.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>What's next</h2>
+        <p><span class="todo">[TODO — e.g. usage reporting, badge-release at the printer, or extending the same rollout pattern to other clients]</span></p>
+      </section>
+
+      <section class="case-section">
+        <h2>Gallery</h2>
+        <div class="case-gallery">
+          <div class="case-gallery-item">uniflow-01.png — Uniflow Cloud admin console</div>
+          <div class="case-gallery-item">uniflow-02.png — Training handout or quick-start guide</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="case-nav">
+    <a href="/projects/network-switch-replacement.html" class="btn btn-outline-dark">&larr; Network Switch Replacement</a>
+    <a href="/projects/homelab.html" class="btn btn-outline-dark">Proxmox Homelab &rarr;</a>
+  </nav>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">Jackson Lutton</div>
+      <ul class="footer-links">
+        <li><a href="mailto:luttonjackson@gmail.com">Email</a></li>
+        <li><a href="https://github.com/jlutton12" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/jackson-lutton" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 <span>Jackson Lutton</span> &middot; jacksonlutton.com &middot; Built with plain HTML/CSS/JS, hosted on <span>Netlify</span>.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
