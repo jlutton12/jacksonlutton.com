@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Smart Mirror — Jackson Lutton</title>
-  <meta name="description" content="A Raspberry Pi smart mirror using two-way acrylic over a slim display, running MagicMirror² with custom modules that pull live status from the homelab."/>
+  <title>Smart Mirror (Planned) — Jackson Lutton</title>
+  <meta name="description" content="A planned Raspberry Pi smart mirror: two-way acrylic over a slim display, running MagicMirror² with custom modules that pull live status from the homelab."/>
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-  <meta property="og:title" content="Smart Mirror — Jackson Lutton"/>
-  <meta property="og:description" content="A super-slim Raspberry Pi smart mirror running MagicMirror²."/>
+  <meta property="og:title" content="Smart Mirror (Planned) — Jackson Lutton"/>
+  <meta property="og:description" content="The plan for a super-slim Raspberry Pi smart mirror running MagicMirror²."/>
   <meta property="og:type" content="article"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="/css/styles.css">
@@ -33,10 +33,10 @@
 
   <main id="main">
     <header class="case-hero">
-      <p class="case-hero-eyebrow">Case Study — Personal Build</p>
+      <p class="case-hero-eyebrow">Upcoming Project</p>
       <h1>Smart Mirror</h1>
-      <p class="case-hero-summary">A super-slim Raspberry Pi smart mirror — two-way acrylic over a thin display, Pi mounted behind it — running MagicMirror&sup2; with modules that pull live status from the homelab.</p>
-      <span class="case-hero-status"><span class="todo">[TODO — Planning / Parts ordered / Built]</span></span>
+      <p class="case-hero-summary">A super-slim Raspberry Pi smart mirror — two-way acrylic over a thin display, Pi mounted flat behind it — running MagicMirror&sup2; with modules that pull live status from the homelab. This one is still on the to-do list; here's the plan.</p>
+      <span class="case-hero-status">Planned &middot; not started yet</span>
       <div class="project-tags">
         <span class="project-tag">Raspberry Pi</span>
         <span class="project-tag">MagicMirror&sup2;</span>
@@ -47,33 +47,35 @@
 
     <div class="case-body">
       <section class="case-section">
-        <h2>Problem</h2>
-        <p>I wanted a glanceable display for the things I check every morning — time, weather, calendar — plus a reason to build something physical that ties into the homelab. A smart mirror does both: it's a normal mirror until the display behind it lights up.</p>
+        <h2>Why this project</h2>
+        <p>I want a glanceable display for the things I check every morning — time, weather, calendar — and a reason to build something physical that ties into the homelab. A smart mirror does both: it's a normal mirror until the display behind it lights up.</p>
       </section>
 
       <section class="case-section">
-        <h2>What I'm building</h2>
-        <p>The approach is the "super-slim smart mirror" pattern: a sheet of two-way acrylic laid over a thin display panel, with the Raspberry Pi mounted flat behind it so the whole assembly stays shallow enough to hang like a picture frame. The Pi runs MagicMirror&sup2;, which renders a black-background web page of modules — anything dark disappears behind the acrylic, anything white shows through.</p>
+        <h2>The plan</h2>
+        <p>The approach is the "super-slim smart mirror" pattern: a sheet of two-way acrylic laid over a thin display panel, with the Raspberry Pi mounted flat behind it so the whole assembly stays shallow enough to hang like a picture frame. The Pi runs MagicMirror&sup2;, which renders a black-background page of modules — anything dark disappears behind the acrylic, anything white shows through.</p>
         <p><strong>Planned modules:</strong></p>
         <ul>
           <li>Clock, weather, and calendar — the standard MagicMirror&sup2; set</li>
-          <li><strong>Home Assistant status panel</strong> (custom, planned) — pulls from the <a href="/projects/home-assistant.html">Home Assistant build</a> to show which lights are on, door sensor state, and the like</li>
-          <li><strong>Network+ flashcard rotator</strong> (custom, planned) — cycles through study cards for CompTIA Network+ while I get ready in the morning</li>
+          <li><strong>Home Assistant status panel</strong> (custom) — pulls from the <a href="/projects/home-assistant.html">apartment build</a> to show which lights are on, door sensor state, and the like</li>
+          <li><strong>Network+ flashcard rotator</strong> (custom) — cycles through CompTIA Network+ study cards while I get ready in the morning</li>
         </ul>
       </section>
 
       <section class="case-section">
+        <h2>Build order</h2>
+        <ol>
+          <li>Pick the display size, then order the acrylic and frame to match.</li>
+          <li>Assemble the display + acrylic stack and confirm the mirror effect in the room's actual light.</li>
+          <li>Install MagicMirror&sup2; on the Pi with the default clock/weather/calendar modules.</li>
+          <li>Write the Home Assistant status module against the HA API.</li>
+          <li>Write the flashcard module, then mount the whole thing on the wall.</li>
+        </ol>
+      </section>
+
+      <section class="case-section">
         <h2>Build log</h2>
-        <div class="build-log">
-          <div class="build-log-entry">
-            <div class="build-log-date"><span class="todo">[TODO — date]</span></div>
-            <p><span class="todo">[TODO — first entry: e.g. "Researched super-slim builds, settled on a two-way acrylic sheet and a thin display panel. Ordered parts."]</span></p>
-          </div>
-          <div class="build-log-entry">
-            <div class="build-log-date"><span class="todo">[TODO — date]</span></div>
-            <p><span class="todo">[TODO — next entry]</span></p>
-          </div>
-        </div>
+        <div class="build-log-empty">No entries yet — nothing's been ordered. Dated entries will show up here as the build gets going.</div>
       </section>
 
       <section class="case-section">
@@ -122,11 +124,11 @@
             <tr><th>Part</th><th>Purpose</th><th>Cost</th><th>Link</th></tr>
           </thead>
           <tbody>
-            <tr><td>Raspberry Pi <span class="todo">[TODO — model]</span></td><td>Runs MagicMirror&sup2;</td><td><span class="todo">[TODO]</span></td><td><span class="todo">[TODO]</span></td></tr>
-            <tr><td>Thin display panel <span class="todo">[TODO — size/model]</span></td><td>Screen behind the acrylic</td><td><span class="todo">[TODO]</span></td><td><span class="todo">[TODO]</span></td></tr>
-            <tr><td>Two-way acrylic sheet</td><td>Mirror surface</td><td><span class="todo">[TODO]</span></td><td><span class="todo">[TODO]</span></td></tr>
-            <tr><td>Frame / mount</td><td>Holds the stack, hangs on the wall</td><td><span class="todo">[TODO]</span></td><td><span class="todo">[TODO]</span></td></tr>
-            <tr><td><span class="todo">[TODO — more rows]</span></td><td></td><td></td><td></td></tr>
+            <tr><td>Raspberry Pi</td><td>Runs MagicMirror&sup2;</td><td><span class="tbd">TBD</span></td><td><span class="tbd">TBD</span></td></tr>
+            <tr><td>Thin display panel</td><td>Screen behind the acrylic</td><td><span class="tbd">TBD</span></td><td><span class="tbd">TBD</span></td></tr>
+            <tr><td>Two-way acrylic sheet</td><td>Mirror surface</td><td><span class="tbd">TBD</span></td><td><span class="tbd">TBD</span></td></tr>
+            <tr><td>Frame &amp; wall mount</td><td>Holds the stack, hangs like a picture</td><td><span class="tbd">TBD</span></td><td><span class="tbd">TBD</span></td></tr>
+            <tr><td>Power &amp; HDMI cabling</td><td>Hidden behind the frame</td><td><span class="tbd">TBD</span></td><td><span class="tbd">TBD</span></td></tr>
           </tbody>
         </table>
       </section>
@@ -142,22 +144,12 @@
       </section>
 
       <section class="case-section">
-        <h2>What I learned</h2>
-        <p><span class="todo">[TODO]</span></p>
-      </section>
-
-      <section class="case-section">
-        <h2>What's next</h2>
-        <p>Finish the physical build, then write the two custom modules. <span class="todo">[TODO — Jackson to expand]</span></p>
-      </section>
-
-      <section class="case-section">
         <h2>Gallery</h2>
         <div class="case-gallery">
-          <div class="case-gallery-item">smart-mirror-01.png — Parts laid out</div>
-          <div class="case-gallery-item">smart-mirror-02.png — Display + acrylic stack</div>
-          <div class="case-gallery-item">smart-mirror-03.png — MagicMirror&sup2; default modules running</div>
-          <div class="case-gallery-item">smart-mirror-04.png — Finished mirror on the wall</div>
+          <div class="case-gallery-item">Photos will land here once the build starts — parts laid out</div>
+          <div class="case-gallery-item">Display + acrylic stack</div>
+          <div class="case-gallery-item">MagicMirror&sup2; default modules running</div>
+          <div class="case-gallery-item">Finished mirror on the wall</div>
         </div>
       </section>
     </div>

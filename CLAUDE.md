@@ -25,7 +25,13 @@ Audience: hiring managers and IT leads. Tone: clear, practical, confident — no
 ## Projects (case studies)
 Keep all of these — they're not mutually exclusive:
 - **Existing work projects** (real, already shipped at the MSP): Azure AD & Intune Migration, Network Switch Replacement, Uniflow Cloud Print Migration.
-- **Personal/homelab projects** (hands-on practice building the same skills used at the MSP): Proxmox homelab, Home Assistant apartment build, Smart mirror (in progress).
+- **Personal/homelab projects** (hands-on practice building the same skills used at the MSP): Proxmox homelab (running), Home Assistant apartment build (in progress), Smart mirror (**planned — not started**; always show it under "Up next"/"Planned", never as built).
+
+## Status language
+Project status is shown with `.status-chip` classes: `status-done` (Completed — client work), `status-live` (Running), `status-active` (In Progress / Studying / Next Stage), `status-planned` (dashed outline). The home page's "Up Next" roadmap is the single place upcoming projects live; add new ones there and to `/projects/index.html` with a Planned chip.
+
+## Home page = landing page
+Order is fixed: Hero → What I Work With → What I've Done (client work) → What I'm Building (homelab) + Up Next roadmap → About teaser → Contact. Keep it simple: no paragraph over three sentences, no new sections without a reason.
 
 ## Rules
 - Every page shares the same header nav and footer. Put them in each file (no JS includes) and keep them byte-identical.
