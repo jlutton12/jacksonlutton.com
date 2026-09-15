@@ -30,6 +30,12 @@ Keep all of these — they're not mutually exclusive:
 ## Status language
 Project status is shown with `.status-chip` classes: `status-done` (Completed — client work), `status-live` (Running), `status-active` (In Progress / Studying / Next Stage), `status-planned` (dashed outline). The home page's "Up Next" roadmap is the single place upcoming projects live; add new ones there and to `/projects/index.html` with a Planned chip.
 
+## Things Jackson set deliberately — don't undo
+- Hero status card says **"Currently Employed"** (he changed it from "Open to Roles" in April 2026).
+- Contact section has a **Formspree form** (`https://formspree.io/f/mbdqzdbb`) plus a phone card (469-531-2963). The CSP in `netlify.toml` allow-lists formspree.io in `connect-src` and `form-action` — keep that if the CSP changes.
+- Scroll-reveal (`.reveal` + delay classes) is his; it only hides content under `@media (scripting: enabled)` so no-JS visitors still see everything.
+- Always `git fetch` and check `origin/main` before branching or merging — he commits from the GitHub web UI too.
+
 ## Home page = landing page
 Order is fixed: Hero → What I Work With → What I've Done (client work) → What I'm Building (homelab) + Up Next roadmap → About teaser → Contact. Keep it simple: no paragraph over three sentences, no new sections without a reason.
 

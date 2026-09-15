@@ -4,9 +4,67 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNavToggle();
   highlightCurrentNavLink();
+  initScrollReveal();
+  initContactForm();
   initHobbyAccordion();
   initLightbox();
 });
+
+// SCROLL REVEAL
+function initScrollReveal() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  els.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) el.classList.add('visible');
+    else observer.observe(el);
+  });
+}
+
+// CONTACT FORM (Formspree)
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  const btn = form.querySelector('button[type="submit"]');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    status.className = 'form-status';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      btn.style.display = 'none';
+      status.textContent = "✓ Message sent — I'll get back to you soon!";
+      status.classList.add('success');
+    } catch {
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+      status.textContent = 'Something went wrong — please email me directly at luttonjackson@gmail.com.';
+      status.classList.add('error');
+    }
+  });
+}
 
 // NAV TOGGLE (mobile hamburger)
 function initNavToggle() {
